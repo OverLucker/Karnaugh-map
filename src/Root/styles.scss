@@ -12,7 +12,6 @@
 
 html, body {
   height: 100%;
-  overflow: hidden;
 }
 
 :global {
@@ -35,6 +34,20 @@ html, body {
   margin: 10rem auto;
 
   &__push{
+    margin-bottom: $big-indent;
+    margin-right: $std-indent;
+
+    &_bold{
+      font-weight: bold;
+    }
+  }
+
+  &__variables{
+    font-weight: bold;
+    font-size: 1.5rem;
+  }
+
+  &__end-of-block{
     margin-bottom: $big-indent;
   }
 }

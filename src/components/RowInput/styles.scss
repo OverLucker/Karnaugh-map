@@ -1,0 +1,17 @@
+@import "src/Root/defines";
+
+.row{
+  display: block;
+  position: relative;
+
+  &__input{
+    display: inline-block;
+    width: calc(100% - #{$std-size} - #{$std-indent});
+    margin-right: $std-indent;
+  }
+
+  &__button{
+    width: $std-size;
+    padding: 0;
+  }
+}
