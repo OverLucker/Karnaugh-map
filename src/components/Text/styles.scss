@@ -1,0 +1,11 @@
+@import "src/Root/defines";
+
+.text{
+  display: block;
+  position: relative;
+  margin-bottom: $std-indent;
+  border: 2px solid $green;
+  padding: $std-indent;
+  border-radius: .5rem;
+  font-size: 1.5rem;
+}

@@ -1,0 +1,30 @@
+@import "src/Root/defines";
+
+.title{
+  display: block;
+  position: relative;
+  width: 100%;
+  text-align: left;
+  margin-bottom: $std-indent;
+  font-weight: bold;
+
+  &_1{
+    font-size: 4rem;
+  }
+
+  &_2{
+    font-size: 3.5rem;
+  }
+
+  &_3{
+    font-size: 3rem;
+  }
+
+  &_4{
+    font-size: 2.5rem;
+  }
+
+  &_4{
+    font-size: 2rem;
+  }
+}

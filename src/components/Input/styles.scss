@@ -1,0 +1,13 @@
+@import "src/Root/defines";
+
+.input{
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 5rem;
+  border: 2px solid $green;
+  border-radius: .5rem;
+  padding: 0 1rem;
+  line-height: 5rem;
+  margin-bottom: $std-indent;
+}

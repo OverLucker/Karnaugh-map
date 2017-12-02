@@ -1,0 +1,22 @@
+@import "src/Root/defines";
+
+.clipboard{
+  display: block;
+  position: relative;
+  width: 100%;
+  margin-bottom: $std-indent;
+
+  &__text{
+    margin-bottom: $micro-indent;
+  }
+
+  &__ready{
+    display: inline-block;
+    position: relative;
+    margin-left: 2rem;
+    font-size: 1.5rem;
+    vertical-align: middle;
+    color: $green;
+    font-weight: bold;
+  }
+}

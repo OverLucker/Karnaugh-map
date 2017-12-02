@@ -1,0 +1,40 @@
+@import "./defines";
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-weight: 100;
+  color: $dark-gray;
+  font-family: 'Helvetica', sans-serif;
+  font-size: $std-text-size;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+:global {
+  .app, #app {
+    height: 100%;
+  }
+
+  a {
+    text-decoration: none;
+    color: black;
+  }
+}
+
+.root{
+  display: block;
+  position: relative;
+  width: 75%;
+  top: 0;
+  left: 0;
+  margin: 10rem auto;
+
+  &__push{
+    margin-bottom: $big-indent;
+  }
+}
