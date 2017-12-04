@@ -216,7 +216,7 @@ export class MinTermFormatterWordStyle{
         term = Array.from(term);
         let obj = this;
         res = term.map( (x, i) => obj.literal(x, obj.alphabets[term.length - i - 1] ) )
-            .reduce( (x, y) => x ? (x + (y ? "\t⋅\t" + y : y)) : y );
+            .reduce( (x, y) => x ? (x + (y ? " ⋅ " + y : y)) : y );
         return !res ? '1' : res;
     };
 }
