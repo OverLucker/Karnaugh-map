@@ -79,7 +79,7 @@ module.exports = {
     output: {
         path: isProd ? path.resolve(`./${distDir}/${staticResDir}/`) : path.resolve(`./${distDir}/`),
         filename: "[name]-[hash].js",
-        publicPath: isProd ? `/${staticResDir}/` : `http://${devHostName}:${port}/`,
+        publicPath: isProd ? `./${staticResDir}/` : `http://${devHostName}:${port}/`,
     },
     module: {
         rules: [
