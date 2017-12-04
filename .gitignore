@@ -1,5 +1,10 @@
 .idea/
-node_modules/
-public/
 .DS_Store
+node_modules/
+src/
+.babelrc
+devServer.js
+package.json
 package-lock.json
+webpack.config.babel.js
+public/
