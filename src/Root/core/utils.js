@@ -216,7 +216,7 @@ export class MinTermFormatterWordStyle{
         term = Array.from(term);
         let obj = this;
         res = term.map( (x, i) => obj.literal(x, obj.alphabets[term.length - i - 1] ) )
-            .reduce( (x, y) => x ? (x + (y ? " ⋅ " + y : y)) : y );
+            .reduce( (x, y) => x ? (x + (y ? "\t⋅\t" + y : y)) : y );
         return !res ? '1' : res;
     };
 }
@@ -249,8 +249,7 @@ export class MinTermFormatter{
 }
 
 export const SOPtoString = (sop, formatter) => sop.map( (x) => x.format(formatter) ).reduce( (x, y) => x + ' + ' + y );
-
-export const SOPtoString2 = (sop, formatter) => sop.map( (x) => formatter.format(x) ).reduce( (x, y) => x + ' + ' + y );
+export const SOPtoString2 = (sop, formatter) => sop.map(formatter.format).reduce( (x, y) => x + ' + ' + y );
 
 export const essential = coverage => coverage.filter( (x) => x.length === 1 ).map( (x) => x[0] );
 
@@ -278,15 +277,13 @@ export const find_solution = (possible_implicants, terms_dec) =>{
     const implications = {};
     // prepare coverage array
     const coverage = [];
-    terms_dec.forEach(function(item) {
-        coverage[item] = [];
-    });
+    terms_dec.forEach(item => coverage[item] = []);
 
-    possible_implicants.forEach(function(implicant) {
+    possible_implicants.forEach(implicant => {
         let pos_terms = constitute(implicant);
-        let pt_dec = pos_terms.map( (x) => bin2dec(x) );
+        let pt_dec = pos_terms.map(bin2dec);
         implications[implicant] = pt_dec;
-        pt_dec.forEach(function(item) {
+        pt_dec.forEach(item => {
             coverage[item].push(implicant);
         });
     });

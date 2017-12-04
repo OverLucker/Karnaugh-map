@@ -1146,4 +1146,9 @@
   .mord.mathrm.mtight{
     font: inherit !important;
   }
+
+  .katex > .katex-html > .base > .mord,
+  .katex > .katex-html > .base > .mbin{
+    white-space: normal;
+  }
 }

@@ -50,4 +50,20 @@ html, body {
   &__end-of-block{
     margin-bottom: $big-indent;
   }
+
+  &__button{
+    display: block;
+    width: 100%;
+    margin-bottom: 5rem;
+
+    &_danger{
+      color: red;
+      border-color: red;
+    }
+
+    &:active{
+      background-color: red;
+      border-color: red;
+    }
+  }
 }

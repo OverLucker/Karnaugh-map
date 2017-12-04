@@ -25,8 +25,8 @@ export default class extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            minterms: '1, 2, 3',
-            variables: ['x_1', 'x_2', 'x_3', ],
+            minterms: '0,2,4,5,6,7,9,11,14,16,17,18,20,21,23,25,26,27,29,30',
+            variables: ['x_1', 'x_2', 'x_3', 'x_4', 'x_5'],
             FDNFForHuman: null,
             FDNFForComputer: null,
             SOPForHuman: null,
@@ -35,6 +35,7 @@ export default class extends React.Component {
             SOPAllForComputer: null,
             SOPBestForHuman: null,
             SOPBestForComputer: null,
+            showAll: false,
         }
     }
 
@@ -63,9 +64,9 @@ export default class extends React.Component {
 
     calculate = () => {
         let { minterms, variables }= this.state;
-        minterms = minterms.split(',');
+        minterms = minterms.split(',').map(val => parseInt(val));
         const max = Math.max(...minterms);
-        const num = Math.ceil(Math.log(max) / Math.log(2));
+        const num = Math.ceil(Math.log(max + 1) / Math.log(2));
         const terms = minterms.map(x => new Term(x, num));
         const resultFDNF = core.calculateFDNF(terms, variables);
         const resultSOP = core.calculateSOP(terms, variables);
@@ -74,6 +75,12 @@ export default class extends React.Component {
             ...resultFDNF,
             ...resultSOP,
         });
+    };
+
+    toggleShowAll = () => {
+        const { state } = this;
+        state.showAll = !state.showAll;
+        this.setState({ state });
     };
 
     render() {
@@ -88,6 +95,7 @@ export default class extends React.Component {
             SOPAllForComputer,
             SOPBestForHuman,
             SOPBestForComputer,
+            showAll,
         } = this.state;
 
         return <div styleName="root">
@@ -117,23 +125,34 @@ export default class extends React.Component {
             { SOPForComputer && <Title size="4">SOP for Computer</Title> }
             { SOPForComputer && <Clipboard styleName="root__end-of-block">{ SOPForComputer }</Clipboard> }
 
-            { SOPAllForHuman && <Title size="4">SOP for human</Title> }
-            { SOPAllForHuman && <div styleName="root__end-of-block">
-                { SOPAllForHuman.map((value, index) => <Text key={index} >
-                    <InlineMath>{ value }</InlineMath>
-                </Text>) }
+
+            { SOPAllForHuman && SOPAllForComputer && <Button styleName="root__button root__button_danger" onClick={this.toggleShowAll}>
+                { showAll ? 'Hide' : 'Show' } all solutions. Are you really need it? { SOPAllForHuman.length } solutions here
+            </Button> }
+
+            { showAll && <div>
+                { SOPAllForHuman && <Title size="4">SOP for human</Title> }
+                { SOPAllForHuman && <div styleName="root__end-of-block">
+                    { SOPAllForHuman.map((value, index) => <Text key={index} >
+                        <InlineMath>{ value }</InlineMath>
+                    </Text>) }
+                </div> }
+
+                { SOPAllForComputer && <Title size="4">SOP for Computer</Title> }
+                { SOPAllForComputer && <div styleName="root__end-of-block">
+                    { SOPAllForComputer.map((value, index) => <Clipboard key={index} >{ value }</Clipboard>) }
+                </div> }
             </div> }
 
-            { SOPAllForComputer && <Title size="4">SOP for Computer</Title> }
-            { SOPAllForComputer && <div styleName="root__end-of-block">
-                { SOPAllForComputer.map((value, index) => <Clipboard key={index} >{ value }</Clipboard>) }
-            </div> }
 
             { SOPBestForHuman && <Title size="4">BEST SOP for human</Title> }
             { SOPBestForHuman && <Text styleName="root__end-of-block"><InlineMath>{ SOPBestForHuman }</InlineMath></Text> }
 
             { SOPBestForComputer && <Title size="4">BEST SOP for Computer</Title> }
             { SOPBestForComputer && <Clipboard styleName="root__end-of-block">{ SOPBestForComputer }</Clipboard> }
+
+            <Title size="4">Vlad Yankovsky - <a style={{color: 'blue'}} href="https://telegram.me/overlucker" target="_blank">@overlucker</a></Title>
+            <Title size="4">Anton Chashchin - <a style={{color: 'blue'}} href="https://telegram.me/casinX" target="_blank">@casinX</a></Title>
         </div>
     }
 }
